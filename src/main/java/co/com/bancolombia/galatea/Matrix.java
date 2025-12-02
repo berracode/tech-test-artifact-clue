@@ -31,7 +31,8 @@ public class Matrix {
     public void print() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                System.out.print(data[i][j] + " ");
+                String item = data[i][j] == null ? "*" : data[i][j];
+                System.out.print(item + " ");
             }
             System.out.println();
         }
@@ -49,5 +50,9 @@ public class Matrix {
 
     public int getCols() {
         return cols;
+    }
+
+    public String[][] getData() {
+        return data;
     }
 }
