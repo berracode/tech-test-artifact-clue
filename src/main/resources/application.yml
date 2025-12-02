@@ -1,2 +1,21 @@
 server:
   port: 9090
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${HOST}:${PORT}/${DBNAME}
+    username: ${USER}
+    password: ${PASS}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # crea/actualiza tablas automáticamente
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: always

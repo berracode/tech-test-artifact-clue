@@ -2,21 +2,78 @@ package co.com.bancolombia.galatea.service;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import co.com.bancolombia.galatea.Matrix;
 import co.com.bancolombia.galatea.dto.ManuscriptRequest;
+import co.com.bancolombia.galatea.dto.StatsResponse;
+import co.com.bancolombia.galatea.entity.ManuscriptEntity;
+import co.com.bancolombia.galatea.repository.ManuscriptRepository;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ArtifactService {
+    private final ManuscriptRepository manuscriptRepository;
+
+    private final Map<String, Boolean> cache = new ConcurrentHashMap<>();
+    private final AtomicInteger countClue = new AtomicInteger(0);
+    private final AtomicInteger countNoClue = new AtomicInteger(0);
 
     public boolean analyzeManuscript(ManuscriptRequest manuscript) {
+        String hash = hashManuscript(manuscript.getManuscript());
 
-        String[] manuscriptArray = manuscript.getManuscript().toArray(new String[0]);
+        Boolean cached = cache.get(hash);
+        if (cached != null) {
+            return cached;
+        }
 
-        boolean result = containsArtifactClue(manuscriptArray);
+        Optional<ManuscriptEntity> existing = manuscriptRepository.findByHash(hash);
+        if (existing.isPresent()) {
+            boolean hasClue = existing.get().isHasClue();
+            cache.put(hash, hasClue);
+            return hasClue;
+        }
 
-        return result;
+        boolean hasClue =
+                containsArtifactClue(manuscript.getManuscript().toArray(new String[0]));
+
+        cache.put(hash, hasClue);
+
+        if (hasClue) {
+            countClue.incrementAndGet();
+        } else {
+            countNoClue.incrementAndGet();
+        }
+
+        ManuscriptEntity entity =
+                ManuscriptEntity.builder().hash(hash).hasClue(hasClue).build();
+        manuscriptRepository.save(entity);
+        return hasClue;
+    }
+
+    public StatsResponse getStats() {
+        int clue = countClue.get();
+        int noClue = countNoClue.get();
+        double ratio = noClue == 0 ? 0 : (double) clue / (double) noClue;
+
+        return new StatsResponse(clue, noClue, ratio);
+    }
+
+    private String formatManuscript(List<String> lines) {
+        return String.join("##", lines);
+    }
+
+
+    private String hashManuscript(List<String> manuscript) {
+        String text = String.join("\n", manuscript);
+        return DigestUtils.sha256Hex(text);
     }
 
     private Matrix buildMatrix(String[] manuscript) {
