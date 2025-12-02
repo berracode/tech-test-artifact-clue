@@ -5042,7 +5042,11 @@ public class Main {
 
         String[] initialManuscript = {"RTHGQW", "XRLORE", "NARURR", "REVRAL", "EGSILE", "BRINDS"};
 
-        containsArtifactClue(manuscriptLarge);
+        String[] wrongManuscript1 = {"QWE", "RTY", "YUI"};
+        String[] wrongManuscript2 = {"QWE"};
+
+        var result = containsArtifactClue(initialManuscript);
+        System.out.println("contain artifacts clues? " + result);
 
     }
 
