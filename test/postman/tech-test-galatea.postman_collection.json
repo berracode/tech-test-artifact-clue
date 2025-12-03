@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "5d016ef9-132f-4f7c-8f15-a73165a4c821",
+		"name": "tech-test-galatea",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17813702"
+	},
+	"item": [
+		{
+			"name": "stats local",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/clue/stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"clue",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stats pdn",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://artifact.clue.ritallus.com/clue/stats",
+					"protocol": "https",
+					"host": [
+						"artifact",
+						"clue",
+						"ritallus",
+						"com"
+					],
+					"path": [
+						"clue",
+						"stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "analyze manuscript local",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"manuscript\": [\r\n    \"KBMPTVL\",\r\n    \"GYEGTZWG\",\r\n    \"URIOEOZT\"\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/clue",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"clue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "analyze manuscript pdn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \"manuscript\": [\r\n    \"RTHGQW\", \"XRLORE\", \"NARURR\", \"REVRAL\", \"EGSILE\", \"BRINDS\", \"QWERTY\", \"ASDFGH\", \"ZXCVBN\", \"PLMOKN\",\r\n    \"QAZWSX\", \"EDCRFV\", \"TGBYHN\", \"UJMIKO\", \"OLPWER\", \"MNBCXZ\", \"QWERTZ\", \"YUIOPL\", \"HGFDSA\", \"ZXCVBG\",\r\n    \"LKJHGF\", \"POIUYT\", \"MNBVCX\", \"QWERTQ\", \"ASDFGA\", \"ZXCVBZ\", \"PLMOKM\", \"QAZWSQ\", \"EDCRFE\", \"TGBYHT\",\r\n    \"UJMIKU\", \"OLPWEO\", \"MNBCXM\", \"QWERTW\", \"YUIOPY\", \"HGFDSH\", \"ZXCVBX\", \"LKJHGL\", \"POIUYP\", \"MNBVCM\",\r\n    \"QWERTX\", \"ASDFGS\", \"ZXCVBC\", \"PLMOKP\", \"QAZWSA\", \"EDCRFR\", \"TGBYHB\", \"UJMIKI\", \"OLPWEP\", \"MNBCXN\",\r\n    \"QWERTC\", \"YUIOPU\", \"HGFDSJ\", \"ZXCVBV\", \"LKJHGA\", \"POIUYO\", \"MNBVCA\", \"QWERTV\", \"ASDFGD\", \"ZXCVBN\",\r\n    \"PLMOKL\", \"QAZWSD\", \"EDCRFT\", \"TGBYHN\", \"UJMIKO\", \"OLPWEL\", \"MNBCXB\", \"QWERTB\", \"YUIOPI\", \"HGFDSK\",\r\n    \"ZXCVBM\", \"LKJHGS\", \"POIUYU\", \"MNBVCB\", \"QWERTN\", \"ASDFGF\", \"ZXCVBZ\", \"PLMOKJ\", \"QAZWSF\", \"EDCRFY\",\r\n    \"TGBYHJ\", \"UJMIKK\", \"OLPWEK\", \"MNBCXC\", \"QWERTM\", \"YUIOPP\", \"HGFDSL\", \"ZXCVBN\", \"LKJHGD\", \"POIUYT\",\r\n    \"MNBVCC\", \"QWERTL\", \"ASDFGH\", \"ZXCVBN\", \"PLMOKH\", \"QAZWSG\", \"EDCRFU\", \"TGBYHL\", \"UJMIKM\", \"OLPWEM\"\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://artifact.clue.ritallus.com/clue",
+					"protocol": "https",
+					"host": [
+						"artifact",
+						"clue",
+						"ritallus",
+						"com"
+					],
+					"path": [
+						"clue"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
