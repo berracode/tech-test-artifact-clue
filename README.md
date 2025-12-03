@@ -50,6 +50,8 @@ Puedes probar la aplicación desplegada de la siguiente forma:
 1. Importar la colección de postman: [Colección postman](test/postman/tech-test-galatea.postman_collection.json)
 2. Ejecutar la request: **analyze manuscript pdn**, puedes probar diferentes cuerpos de
    petición: [Diferentes cuerpos de petición](test/dataset)
+3. Las estaidisticas de la ejecucón del endpoint **analyze manuscript pdn** las puedes verificar con la request  **stats
+   pdn** o en la siguiente URL: **https://artifact.clue.ritallus.com/clue/stats**
 
 ## Prueba de performance
 
