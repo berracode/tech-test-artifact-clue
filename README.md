@@ -55,7 +55,7 @@ Puedes probar la aplicación desplegada de la siguiente forma:
 
 ## Prueba de performance
 
-Se realizaron pruebas de performance de la aplicaicón son una instancia EC2 en aws con las siguientes características:
+Se realizaron pruebas de performance de la aplicación son una instancia EC2 en aws con las siguientes características:
 
 - vCPU: 1
 - RAM: 1,0 GiB
@@ -65,13 +65,17 @@ Se realizaron pruebas de performance de la aplicaicón son una instancia EC2 en 
 Al ser una maquina limitada de recursos, los resultados son concluyentes, está solución actual no podría soportar 1M de
 peticiones por segundo.
 
-![img.png](docs/performance-table.png)
+![img.png](docs/performance.png)
 
 Se observa entonces que:
 
-- hasta 80 hilos con 400 muestras da un error del 0% y un P90 < 9s
-- Despues de 150 hilos con 750 muestras arroja 13.77% de errores y el P90 sube a 16s.
-- Con 250 hilos y 1000 muestras, los errores llegan a 0.40% pero con un P90 casi de 30s
+- hasta 150 hilos con 750 muestras da un error del 0% y un P90 < 17s
+- En de 300 hilos con 1500 muestras arroja 0.73% de errores y el P90 sube a 32s.
+- El TPS se estabiliza cerca de 10 peticiones/segudo desde 40 hilos.
+
+### Métricas adicionales
+
+- Throughput (TPS): X peticiones/segundo
 
 ## Diagrama de solución
 
